@@ -1,5 +1,6 @@
 const express = require("express");
 const dbConnect = require("./config/connDb");
+const {connSqlDB} = require("./config/connDbSQL")
 const {
   registerController,
   loginController,
@@ -11,7 +12,8 @@ const port = 4000;
 
 const app = express();
 
-dbConnect();
+// dbConnect();
+connSqlDB()
 
 //middle wares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,17 +24,13 @@ app.use(cookieParser())
 
 app.set("view engine", "hbs");
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+app.get("/", (req, res) => {res.render("home");});
+app.get("/register", (req, res) => {res.render("register");});
+app.get("/login", (req, res) => {res.render("login");});
 app.get("/dashboard", authenticated, (req, res) => {res.render("dashboard");});
+
+
+
 
 app.post("/register", registerController);
 app.post("/login", loginController);
