@@ -4,6 +4,7 @@ const {connSqlDB} = require("./config/connDbSQL")
 const {
   registerController,
   loginController,
+  delUserController,
 } = require("./controllers/userController");
 const bodyParser = require("body-parser");
 const authenticated = require("./auth/auth");
@@ -34,6 +35,7 @@ app.get("/dashboard", authenticated, (req, res) => {res.render("dashboard");});
 
 app.post("/register", registerController);
 app.post("/login", loginController);
+app.delete('/user/del/me'), delUserController
 
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
