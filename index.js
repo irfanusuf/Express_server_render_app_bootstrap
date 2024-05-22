@@ -19,11 +19,16 @@ const {
 
 const authenticated = require("./auth/auth");
 
-const port = 4000;
+const port = 3000;
 
 const app = express();
 
 // middle ware for setting view engine
+
+app.set("view engine", "hbs");
+app.set('views', path.join(__dirname, 'views' ,'pages'));
+
+
 
 app.engine("hbs",exphbs.engine({
 
@@ -35,11 +40,11 @@ app.engine("hbs",exphbs.engine({
 
 }))
 
-app.set("view engine", "hbs");
 
 
 
-// dbConnect();
+
+dbConnect();
 connSqlDB()
 
 //middle wares
@@ -56,6 +61,9 @@ app.get("/", (req, res) => {res.render("home",  {pageTitle : "ROBOMEOW | HOME"} 
 app.get("/register", (req, res) => {res.render("register", {pageTitle : "ROBOMEOW | REGISTER"} );});
 app.get("/login", (req, res) => {res.render("login" , {pageTitle : "ROBOMEOW | LOGIN"} );});
 app.get("/dashboard", authenticated, (req, res) => {res.render("dashboard" , {pageTitle : "ROBOMEOW | DASHBOARD"} );});
+app.get("/blogs" , (req, res) => {res.render("blogs" , {pageTitle : "ROBOMEOW | BLOGS"} );});
+app.get("/blogs/:params" , (req, res) => {res.render("eachBlog" , {pageTitle : "ROBOMEOW | BLOG"} );});
+app.get("/faq" , (req, res) => {res.render("faq" , {pageTitle : "ROBOMEOW | FAQ"} );});
 
 
 // backend Controller Routes

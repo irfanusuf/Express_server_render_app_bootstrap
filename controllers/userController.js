@@ -113,6 +113,10 @@ const loginController = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             secure: true,
           });
+      
+
+
+          // res.render("login" , {sucessMessage : "logged in Succesfully "})
           res.redirect("/dashboard");
         } else {
           res.render("login", { message: "Incorrect pass" });
@@ -132,6 +136,9 @@ const loginController = async (req, res) => {
     console.log(error);
   }
 };
+
+
+
 
 
 const delUserController = async (req,res) =>{

@@ -40,11 +40,46 @@
         <label class="form-check-label" for="exampleCheck1">Remember Me</label>
       </div>
 
+
+
+
+
       {{#if message}}
 
-        <p class="text-danger"> {{message}} </p>
+        <div class="alert alert-danger alert-dismissible fade show">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+        
+            <strong>{{message}}!</strong> You should <a href="/faq" class="alert-link">read this message</a>.
+          
+        </div>
 
       {{/if}}
+
+
+      
+
+
+      {{#if sucessMessage}}
+
+        <div class="alert alert-success alert-dismissible">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          <strong> {{sucessMessage}}</strong>
+          
+        </div>
+
+      {{/if}}
+
+
+
+
 
       <button type="submit" class="btn btn-success">Login </button>
 
